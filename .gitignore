@@ -1,0 +1,90 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.pyc
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+*.manifest
+*.spec
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.user
+*.code-workspace
+
+# Docker
+.docker/
+docker-compose.override.yml
+*.log
+
+# Project specific
+temp/
+uploads/
+*.db
+*.sqlite
+*.sqlite3
+logs/
+*.log
+
+# Environment variables
+.env
+.env.production
+.env.staging
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Node modules (если появятся)
+node_modules/
+npm-debug.log*
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Secret files
+*.key
+*.pem
+*.crt
+.secrets/

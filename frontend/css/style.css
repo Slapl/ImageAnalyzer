@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #657de8 0%, #32120a 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    max-width: 800px;
+    width: 100%;
+    padding: 40px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.upload-area {
+    border: 3px dashed #ccc;
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.upload-area:hover {
+    border-color: #000000;
+    background: #f7f7ff;
+}
+
+.upload-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.preview-area {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.preview-area img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 240px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.remove-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s;
+}
+
+.remove-btn:hover {
+    background: red;
+}
+
+.analyze-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #242135 0%, #000000 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.analyze-btn:not(:disabled):hover {
+    transform: translateY(-2px);
+}
+
+.analyze-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.loading {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #000000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.result {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #000000;
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.5em;
+    }
+}
+
+/* Режимы и карточки результатов */
+.mode-selector {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 16px;
+}
+
+.mode-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 40px;
+    transition: all 0.2s;
+}
+
+.mode-option:hover {
+    background: #e5e7eb;
+}
+
+.mode-option input {
+    margin: 0;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.result-card {
+    background: #f9fafb;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.result-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 16px;
+    font-weight: 600;
+}
+
+.result-content {
+    padding: 16px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.result-card.error .result-header {
+    background: #ef4444;
+}
+
+.generation-area textarea {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 20px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.generate-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.download-btn {
+    margin-top: 16px;
+    padding: 10px 24px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+
+.settings select,
+.settings .provider-select,
+.settings .model-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    margin-bottom: 12px;
+}
+
+.settings select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.provider-select option,
+.model-select option {
+    padding: 8px;
+}

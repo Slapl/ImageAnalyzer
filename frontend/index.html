@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Studio</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Analyzer</h1>
+            <p>Анализ и генерация изображений с помощью ИИ</p>
+        </header>
+
+        <!-- Вкладка Анализ -->
+        <div id="analyzeTab" class="tab-content active">
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="imageInput" accept="image/*" hidden>
+                <div class="upload-content">
+                    <div class="upload-icon"></div>
+                    <p>Нажми или перетащи картинку сюда</p>
+                    <small>Поддерживаются JPG, PNG, GIF, WEBP (до 10MB)</small>
+                </div>
+            </div>
+
+            <div class="preview-area" id="previewArea" style="display: none;">
+                <img id="preview" alt="Preview">
+                <button class="remove-btn" id="removeBtn">✕</button>
+            </div>
+
+            <!-- Выбор режима -->
+            <div class="mode-selector">
+                <label class="mode-option">
+                    <input type="radio" name="mode" value="single" checked>
+                    <span>Одна модель</span>
+                </label>
+                <label class="mode-option">
+                    <input type="radio" name="mode" value="ensemble">
+                    <span>Ансамбль (несколько моделей)</span>
+                </label>
+            </div>
+
+            <!-- Обычный режим -->
+            <div id="singleMode" class="settings">
+                <label>Модель:</label>
+                <select id="visionModel">
+                    <option value="nemotron-3-omni">Nemotron 3 Nano Omni</option>
+                    <option value="nemotron-nano-vl">Nemotron Nano 12B VL</option>
+                    <option value="llama-3.2-11b-vision">Llama 3.2 11B Vision</option>
+                    <option value="llama-3.2-90b-vision">Llama 3.2 90B Vision</option>
+                    <option value="phi-4-multimodal">Phi-4 Multimodal</option>
+                    <option value="ministral-14b">Ministral 14B</option>
+                </select>
+            </div>
+
+            <!-- Режим ансамбля -->
+            <div id="ensembleModePanel" class="settings" style="display: none;">
+                <label>Выберите модели для ансамбля:</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" class="ensemble-model" value="nemotron-3-omni" checked>
+                        Nemotron 3 Omni
+                    </label>
+                    <label>
+                        <input type="checkbox" class="ensemble-model" value="nemotron-nano-vl" checked>
+                        Nemotron Nano VL
+                    </label>
+                    <label>
+                        <input type="checkbox" class="ensemble-model" value="llama-3.2-11b-vision">
+                        Llama 3.2 11B
+                    </label>
+                    <label>
+                        <input type="checkbox" class="ensemble-model" value="llama-3.2-90b-vision">
+                        Llama 3.2 90B
+                    </label>
+                    <label>
+                        <input type="checkbox" class="ensemble-model" value="phi-4-multimodal">
+                        Phi-4 Multimodal
+                    </label>
+                    <label>
+                        <input type="checkbox" class="ensemble-model" value="ministral-14b">
+                        Ministral 14B
+                    </label>
+                </div>
+            </div>
+
+            <button class="analyze-btn" id="analyzeBtn" disabled>Анализировать</button>
+
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Анализирую изображение...</p>
+            </div>
+
+            <div class="result" id="result" style="display: none;"></div>
+        </div>
+
+        <!-- Вкладка Генерация -->
+        <div id="generateTab" class="tab-content">
+        <div class="generation-area">
+        <textarea id="promptInput" placeholder="Опиши что сгенерировать... Например: 'кот в космическом скафандре, неон, киберпанк'"></textarea>
+
+        <div class="settings">
+            <label>Провайдер генерации:</label>
+            <select id="genProvider">
+                <option value="pollinations" selected>Pollinations (бесплатно, без ключа)</option>
+                <option value="replicate">Replicate (Google Imagen + Flux, нужен ключ)</option>
+            </select>
+
+            <label>Модель для генерации:</label>
+            <select id="genModel">
+                <option value="flux">Flux (рекомендуется, бесплатно)</option>
+                <option value="turbo">Turbo (быстрая)</option>
+                <option value="sdxl">SDXL (качественная)</option>
+            </select>
+
+            <div class="size-selector">
+                <label>Размер:</label>
+                <select id="genWidth">
+                    <option value="512">512</option>
+                    <option value="768">768</option>
+                    <option value="1024" selected>1024</option>
+                </select>
+                <span>x</span>
+                <select id="genHeight">
+                    <option value="512">512</option>
+                    <option value="768">768</option>
+                    <option value="1024" selected>1024</option>
+                </select>
+            </div>
+            <small class="hint" id="modelHint"></small>
+        </div>
+
+        <button class="generate-btn" id="generateBtn">Сгенерировать</button>
+
+        <div class="loading" id="genLoading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Генерирую изображение...</p>
+        </div>
+
+        <div class="result" id="genResult" style="display: none;">
+            <img id="generatedImage" style="max-width: 100%; border-radius: 16px;">
+            <div id="genModelInfo" style="font-size: 12px; color: #666; margin-top: 8px;"></div>
+            <button id="downloadBtn" class="download-btn">Скачать</button>
+        </div>
+    </div>
+</div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

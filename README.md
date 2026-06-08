@@ -13,7 +13,7 @@
 
 ## Технологии
 
-- Backend: FastAPI (Python 3.11)
+- Backend: FastAPI (Python 3.12)
 - Frontend: HTML5, CSS3, JavaScript
 - AI провайдеры: NVIDIA NIM, Replicate API, Pollinations API
 - Контейнеризация: Docker + Docker Compose

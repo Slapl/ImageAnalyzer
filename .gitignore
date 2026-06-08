@@ -88,3 +88,10 @@ ehthumbs.db
 *.pem
 *.crt
 .secrets/
+
+# UV (Python package manager)
+uv.lock
+.pyproject-version
+pyproject.toml
+.python-version
+.uv/
